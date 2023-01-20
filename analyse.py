@@ -9,7 +9,7 @@ from tqdm import tqdm
 import csv
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.preprocessing import MinMaxScaler, LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
 
 
@@ -42,7 +42,7 @@ def regression(pred = False):
 
 
     # On normalise les données
-    scaler = StandardScaler().fit(X_train)
+    scaler = MinMaxScaler().fit(X_train)
     X_train_transformed = scaler.transform(X_train)
     X_test_transformed = scaler.transform(X_test)
 
@@ -78,6 +78,10 @@ def regression(pred = False):
     print("\nscore model 2 : ", accuracy_score(y_test, model2.predict(X_test_transformed)))
 
 
+
+
+
+
     # On génère le csv pour Kaggle
     if(pred == True):
         print("\n ## Génération du CSV ! ##")
@@ -105,4 +109,4 @@ def regression(pred = False):
 
 
 if __name__=="__main__":
-    regression(pred = True)
+    regression(pred = False)
